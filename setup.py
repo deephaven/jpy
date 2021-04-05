@@ -39,26 +39,7 @@ __copyright__ = jpyutil.__copyright__
 __license__ = jpyutil.__license__
 
 def lookup_version():
-  uppath = lambda _path, n: os.sep.join(_path.split(os.sep)[:-n])
-  iris_root = uppath(os.path.abspath(__file__), 3)
-  gradle_properties = os.path.join(iris_root, "gradle.properties")
-
-  if not os.path.exists(gradle_properties):
-    raise ValueError("The gradle.properties file does not exist at {}".format(iris_root))
-
-  # fetch the version string from the gradle.properties file
-  with open(gradle_properties, 'r') as f:
-    check = re.search('versionSource=(.*?)\n', f.read().strip())
-
-  if check is None:
-    raise ValueError("The deephaven release version (versionSource=`version`) "
-                     "could not be discovered in {}".format(gradle_properties))
-
-  release_name = check.group(1)
-
-  release_version = os.path.join(iris_root, 'gradle', 'versions', release_name)
-  with open(release_version, 'r') as f:
-    return f.read().strip()
+    return os.getenv('DEEPHAVEN_VERSION') or 'Unknown'
 
 __version__ = lookup_version()
 
