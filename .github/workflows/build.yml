@@ -24,12 +24,15 @@ jobs:
         with:
           python-version: ${{ matrix.py }}
           architecture: ${{ matrix.arch }}
+          cache: 'pip'
 
       - uses: actions/setup-java@v3
         id: setup-java
         with:
           distribution: 'temurin'
           java-version: '8'
+
+      - run: pip install -r .github/requirements.txt
 
       - run: python setup.py bdist_wheel
         env:
