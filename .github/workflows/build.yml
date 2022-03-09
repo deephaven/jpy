@@ -16,7 +16,7 @@ jobs:
           - '3.7'
           - '3.8'
         arch:
-          - 'x86_64'
+          - 'x64'
     steps:
       - uses: actions/checkout@v3
 
