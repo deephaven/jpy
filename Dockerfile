@@ -1,4 +1,4 @@
-FROM docker.io/azul/zulu-openjdk-debian:8u282 as runtime_reqs
+FROM docker.io/azul/zulu-openjdk-debian:8u292 as runtime_reqs
 RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
@@ -33,6 +33,6 @@ RUN set -eux; \
 
 FROM runtime_reqs
 COPY --from=build /usr/src/app/dist/ .
-RUN pip3 install *.whl \
-    && rm *.whl
-
+RUN set -eux; \
+    pip3 install *.whl; \
+    rm *.whl

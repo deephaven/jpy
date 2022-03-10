@@ -39,7 +39,7 @@ __copyright__ = jpyutil.__copyright__
 __license__ = jpyutil.__license__
 
 def lookup_version():
-    return os.getenv('DEEPHAVEN_VERSION') or 'Unknown'
+  return os.getenv('DEEPHAVEN_VERSION') or 'Unknown'
 
 __version__ = lookup_version()
 
